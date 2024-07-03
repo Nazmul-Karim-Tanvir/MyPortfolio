@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-lg-6 text-center text-lg-end">
                     <div class="img-container">
-                        <img class="img-fluid border rounded" src="./Images/tanvir.jpg" alt="Profile Picture">
+                        <img class="img-fluid rounded" src="./Images/tanvir.jpg" alt="Profile Picture">
                     </div>
                 </div>
             </div>
@@ -231,7 +231,7 @@
                 <div class="row">
                     <div class="col-md-4 info-item">
                         <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <p>123 Main Street, City, Country</p>
+                        <p>Dhaka Bangladesh</p>
                     </div>
                     <div class="col-md-4 info-item">
                         <div class="icon"><i class="fas fa-envelope"></i></div>
@@ -239,25 +239,42 @@
                     </div>
                     <div class="col-md-4 info-item">
                         <div class="icon"><i class="fas fa-phone"></i></div>
-                        <p>+123 456 7890</p>
+                        <p>+88 01698237927</p>
                     </div>
                 </div>
             </div>
-            <form class="contact-form">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" rows="3" placeholder="Your Message"></textarea>
-                </div>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
+            <form class="contact-form form-bg-editing rounded" action="mailto:nazmul.karim.tanvir@g.bracu.ac.bd" method="post"
+                    enctype="text/plain">
+
+                    <div class="form-group">
+                        <label for="Country"><i>Country/Region:</i></label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            placeholder="Enter your country/region" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name"><i>Yout name:</i></label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text"><i>Message:</i></label>
+                        <textarea class="form-control" id="text" name="text" rows="5" placeholder="Enter some text"
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number">Contact Number: </label>
+                        <input type="number" class="form-control" id="number" name="number"
+                            placeholder="Enter your number/Optional">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm mb-2">
+                        Send
+                    </button>
+
+                </form>
         </div>
     </section>
 
