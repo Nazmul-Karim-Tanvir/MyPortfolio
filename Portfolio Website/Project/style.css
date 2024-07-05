@@ -10,14 +10,20 @@ body {
     padding: 100px 0;
     padding-top: 170px;
 }
-
+.section-title{
+    font-family: 'Pacifico', cursive;
+}
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 5px;
+}
 
 .img-container {
     display: inline-block;
     overflow: hidden;
     width: 250px;
     height: 250px;
-    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
     border-radius: 50%;
     margin: 0 auto;
     border: 3px solid #007bff;
@@ -50,6 +56,7 @@ body {
     margin: auto;
     font-family: 'Roboto', sans-serif;
 }
+
 .section-title {
     text-align: center;
     margin: 40px 0;
@@ -135,12 +142,6 @@ body {
     margin-bottom: 20px;
 }
 
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 5px;
-}
-
 .info {
     padding: 20px;
     background-color: #ffffff;
@@ -150,7 +151,19 @@ body {
     transition: background-color 0.3s;
     color: #343a40;
 }
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
 
+.social-icons a:hover {
+    color: #d3d3d3;
+}
+
+
+/* css for dark mode */
 .dark-mode {
     background-color: #343a40;
     color: #e0e0e0;
@@ -211,15 +224,4 @@ background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%);
 
 .dark-mode .info:hover {
     background-color: #6d6d6d;
-}
-
-.social-icons a {
-    color: white;
-    margin: 0 10px;
-    font-size: 1.5rem;
-    transition: color 0.3s;
-}
-
-.social-icons a:hover {
-    color: #d3d3d3;
 }
