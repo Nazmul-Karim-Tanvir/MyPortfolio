@@ -10,9 +10,11 @@ body {
     padding: 100px 0;
     padding-top: 170px;
 }
-.section-title{
+
+.section-title {
     font-family: 'Pacifico', cursive;
 }
+
 .container {
     max-width: 1080px;
     margin: 0 auto;
@@ -26,6 +28,15 @@ body {
     border-radius: 50%;
     margin: 0 auto;
     border: 3px solid #007bff;
+}
+.img-container1 {
+    display: inline-block;
+    overflow: hidden;
+    width: 320px;
+    height: 320px;
+    border-radius: 5%;
+    margin: 0 auto;
+    border: 2px solid #0048ff;
 }
 
 .img-container img {
@@ -68,24 +79,20 @@ body {
     border-bottom: 3px solid #007bff;
 }
 
-.info:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.project-item {
+.info {
+    padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     margin-bottom: 20px;
     transition: transform 0.3s;
     color: #343a40;
 }
 
-.project-item:hover {
+.info:hover {
     transform: translateY(-10px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
 }
 
 .footer {
@@ -141,15 +148,6 @@ body {
     margin-bottom: 20px;
 }
 
-.info {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
-    color: #343a40;
-}
 .social-icons a {
     color: white;
     margin: 0 10px;
@@ -174,7 +172,7 @@ body {
 
 .dark-mode .hero {
     background-color: #2234ae;
-background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%);
+    background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%);
 }
 
 .dark-mode .section-title h2 {
