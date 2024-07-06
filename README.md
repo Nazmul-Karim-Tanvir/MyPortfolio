@@ -1,6 +1,6 @@
 # Web development career discussions and making a demo portfolio project
 
-
+![Alt text](./Portfolio%20Website//Project/Images/portfolio.png)
 
 ## Introduction to Bootstrap
 
