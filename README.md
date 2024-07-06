@@ -4,7 +4,7 @@
 
 ## Introduction to Bootstrap
 
-![Alt text](./Project/Images/bootsrap.jpg)
+![Alt text](./Portfolio%20Website//Project/Images/bootsrap.jpg)
 
 ### Why Bootstrap?
 
@@ -16,7 +16,7 @@ Bootstrap is a widely-used front-end framework that makes web development faster
 4. **Cross-browser Compatibility**: Addresses many browser inconsistencies.
 5. **Ease of Use**: Simple to learn and implement, ideal for beginners.
 
-![Alt text](./Project/Images/Slide1.JPG)
+![Alt text](./Portfolio%20Website/Project/Images/Slide1.JPG)
 
 ### Integrating Bootstrap into an HTML File
 
