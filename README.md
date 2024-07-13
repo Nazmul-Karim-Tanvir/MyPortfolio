@@ -1,4 +1,4 @@
-# Web development career discussions and making a demo portfolio project
+# Web Development Career: Tips and Portfolio Project Demo
 
 ![Alt text](./Portfolio%20Website//Project/Images/portfolio.png)
 
@@ -49,11 +49,85 @@ Here is an example HTML file with Bootstrap integrated:
 </html>
 ```
 
-# Creating a Portfolio Website Using Bootstrap
+# Portfolio Website Documentation
 
-Let's create a portfolio website step by step using Bootstrap.
+This documentation provides an overview of the HTML structure and components used in the portfolio website. By following this guide, you can customize the template to create your own portfolio.
+Follow the customization parts.
 
-## Creating the Navbar
+## Table of Contents
+
+1. [HTML Structure](#html-structure)
+2. [Head Section](#head-section)
+3. [Navbar](#navbar)
+4. [Sections](#sections)
+   * [Home](#home-section)
+   * [About](#about-section)
+   * [Services](#services-section)
+   * [Projects](#projects-section)
+   * [Skills](#skills-section)
+   * [Contact](#contact-section)
+5. [Footer](#footer)
+6. [JavaScript](#javascript)
+7. [CSS](#custom-css)
+
+## 1 HTML Structure
+
+The HTML document is structured as follows:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Head content -->
+</head>
+
+<body>
+    <!-- Navbar -->
+    <!-- Home section -->
+    <!-- About section -->
+    <!-- Services section -->
+    <!-- Projects section -->
+    <!-- Skills section -->
+    <!-- Contact section -->
+    <!-- Footer -->
+    <!-- JavaScript -->
+</body>
+
+</html>
+
+```
+
+## 2 Head Section
+
+The head section includes meta-information about the document, links to external stylesheets, and the title of the webpage.
+
+```html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nazmul Karim Tanvir - Portfolio</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+```
+
+#### Customization
+
+Title: Change the `<title>` tag to reflect your name or portfolio title.
+
+```html
+<title>Your Name - Portfolio</title>
+
+```
+
+## 3 Navbar
 
 A navbar allows users to navigate through different sections of your website. Here's how to create a simple responsive navbar:
 
@@ -90,9 +164,27 @@ A navbar allows users to navigate through different sections of your website. He
     </nav>
 ```
 
-## Creating the Home Section
+#### Customization
 
-The home section is the first thing visitors see. It usually contains a welcoming message or an introduction.
+Brand Name: Change the `<a class="navbar-brand">` tag to your own name or brand.
+
+```html
+<a class="navbar-brand" href="#home">Your Name</a>
+```
+
+You can add or remove as many nav-links as you wish
+
+```html
+<li class="nav-item"><a class="nav-link" href="#home"><i class="fas fa-home"></i> Home</a></li>
+```
+
+* To add a new link like "Certifications" just remove "Home" also make #home to #certifications
+
+## 4 Sections
+
+### 4.1 Home
+
+The home section welcomes visitors to your portfolio.
 
 ```html
 <!-- Home Section -->
@@ -114,10 +206,24 @@ The home section is the first thing visitors see. It usually contains a welcomin
     </header>
 ```
 
-## Creating the About Section
+#### Customization
+
+* **Text** : Update the heading (`<h1>`) and paragraph (`<p>`) to introduce yourself.
+
+```html
+<h1>Welcome to My Portfolio</h1>
+<p class="lead">A passionate [Your Profession] with a focus on [Your Specialization].</p>
+```
+
+* **Image** : Change the `src` attribute of the `<img>` tag to link to your profile picture.
+
+```
+<img class="img-fluid rounded" src="path/to/your-image.jpg" alt="Profile Picture">
+```
+
+### 4.2 About
 
 The about section provides information about you, your background, and your interests.
-
 
 ```html
  <!-- About section -->
@@ -176,10 +282,20 @@ The about section provides information about you, your background, and your inte
     </section>
 ```
 
-## Creating the Services Section
+#### Customization
+
+* **Text** : Update the content in the `<p>` tags to describe yourself.
+
+```html
+<p class="lead">Hello! I'm [Your Name], a [Your Profession] with a passion for [Your Interests].</p>
+```
+
+* **Images** : Replace the images with your own by updating the `src` attributes.
+* **Additional Information** : Add or remove content as needed to best represent your background and achievements.
+
+### 4.3 Services
 
 The projects section showcases your work and accomplishments.
-
 
 ```html
 <!-- Services section -->
@@ -202,7 +318,23 @@ The projects section showcases your work and accomplishments.
     </section>
 ```
 
-## Creating the Projects Section
+#### Customization
+
+* **Service Items** : Add or remove `<div class="col-md-6">` blocks to list all the services you offer.
+
+```html
+<div class="col-lg-4 col-md-6">
+    <div class="service-box">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Web Development</h3>
+        <p>Building responsive and modern websites.</p>
+    </div>
+</div>
+```
+
+* **Icons and Text** : Update the icons and text to match your services.
+
+### 4.4 Projects
 
 The skills section lists your professional skills and proficiencies.
 
@@ -241,9 +373,24 @@ The skills section lists your professional skills and proficiencies.
     </section>
 ```
 
-## Creating the Skilss Section
+#### Customization
 
-The certifications section highlights your relevant certifications.
+* **Projects** : Add or remove project blocks to showcase your work.
+* **Images and Text** : Update the images and descriptions to reflect your projects.
+
+```html
+<div class="col-lg-4 col-md-6">
+    <div class="project-box">
+        <img class="img-fluid" src="path/to/project-image.jpg" alt="Project Image">
+        <h3>Project Title</h3>
+        <p>Short description of the project.</p>
+    </div>
+</div>
+```
+
+### 4.5 Skills
+
+The skils section highlights your relevant skills.
 
 ```html
 <!-- Skills section -->
@@ -259,12 +406,27 @@ The certifications section highlights your relevant certifications.
                         <p>HTML5, CSS, Bootstrap, JavaScript, React, Angular</p>
                     </div>
                 </div>
-                
+  
             </div>
         </div>
     </section>
 ```
-## Creating the Contact Section
+
+#### Customizations
+
+* add or replace as many coloumn div you want in a row
+
+```html
+<div class="col-md-6">
+                    <div class="info">
+                        <h4><i class="fas fa-code" style="color: #ff5733;"></i> Frontend Development</h4>
+                        <p>HTML5, CSS, Bootstrap, JavaScript, React, Angular</p>
+                    </div>
+                </div>
+```
+
+### 4.6 Contact
+
 ```html
 <!-- Contact section -->
     <section id="contact" class="py-5">
@@ -371,7 +533,26 @@ The certifications section highlights your relevant certifications.
     </section>
 ```
 
-## Creating the Footer Section
+#### Customization
+
+* **Form** : Update form fields and action URL.
+
+```html
+<form>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Your Name">
+    </div>
+    <div class="form-group">
+        <input type="email" class="form-control" placeholder="Your Email">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send Message</button>
+</form>
+```
+
+## 5 Footer
 
 The footer section provides additional information like contact details or social media links.
 
@@ -395,14 +576,330 @@ The footer section provides additional information like contact details or socia
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>
-                    <p class="mt-3">&copy; 2024 Nazmul Karim Tanvir. All Rights Reserved.</p>
+                    <p class="mt-3">© 2024 Nazmul Karim Tanvir. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
     </footer>
 ```
 
+#### Customization
 
-# Conclusion
+* **Text** : Update the copyright information.
 
-With this step-by-step guide, customize each section further to reflect your unique style and professional achievements. Bootstrap's extensive documentation and community support will be valuable resources as they continue to develop their web design skills.
+```html
+<p>© 2024 Your Name. All Rights Reserved.</p>
+```
+
+* Social Links: Update links to your social media profiles.
+
+```html
+<a href="https://www.linkedin.com/in/yourprofile" target="_blank">
+    <i class="fab fa-linkedin"></i>
+</a>
+```
+
+## 6 JavaScript
+
+No need to modify it. This Javascript part contains all the functionality of theme change, navbar collapse and more.
+
+```javascript
+<!-- JS Code  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const togglerIcon = navbarToggler.querySelector('.navbar-toggler-icon');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+
+            // Toggle icon change on navbar toggler click
+            navbarToggler.addEventListener('click', function () {
+                if (navbarToggler.classList.contains('collapsed')) {
+                    togglerIcon.classList.remove('fas', 'fa-times');
+                    togglerIcon.classList.add('navbar-toggler-icon');
+                } else {
+                    togglerIcon.classList.remove('navbar-toggler-icon');
+                    togglerIcon.classList.add('fas', 'fa-times');
+                }
+            });
+
+            // Handle nav-link clicks
+            navLinks.forEach(function (navLink) {
+                navLink.addEventListener('click', function (event) {
+                    // Prevent default link behavior
+                    event.preventDefault();
+
+                    // Remove 'active' class from all nav-links
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('active');
+                    });
+
+                    // Add 'active' class to the clicked nav-link
+                    navLink.classList.add('active');
+
+                    // Close the collapsed navbar after click (for mobile view)
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarToggler.click();
+                    }
+
+                    // Scroll to the clicked section
+                    const targetId = navLink.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function () {
+                document.body.classList.toggle('dark-mode');
+
+                // Change theme icon
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+        });
+    </script>
+```
+
+## 7 CSS
+
+* no need to change anything if you follow this portfolio theme
+
+```css
+body {
+    background-color: #F4F2EE;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.contact-form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #343a40;
+    margin-top: 40px;
+    padding: 20px;
+    transition: background-color 0.3s;
+}
+
+.contact-form .form-control {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.contact-form button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    padding: 12px 20px;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+.contact-info {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.contact-info .icon {
+    color: #007bff;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.contact-info .info-item {
+    margin-bottom: 20px;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1080px;
+}
+
+.footer {
+    background-color: #007bff;
+    border-top: 4px solid #ddd;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.hero {
+    background: linear-gradient(90deg, rgb(243, 85, 85) 0%, rgba(123, 158, 255, 1) 100%);
+    color: white;
+    padding: 100px 0;
+    padding-top: 170px;
+    text-align: center;
+}
+
+.img-container {
+    border: 3px solid #007bff;
+    border-radius: 50%;
+    display: inline-block;
+    height: 250px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 250px;
+}
+
+.img-container img {
+    border-radius: 50%;
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.img-container1 {
+    border: 2px solid #0048ff;
+    border-radius: 5%;
+    display: inline-block;
+    height: 320px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 320px;
+}
+
+.info {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #343a40;
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.info:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+}
+
+.nav-item {
+    font-family: 'Roboto', sans-serif;
+    margin: auto;
+    padding: auto;
+}
+
+.navbar {
+    background-color: #007bff;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-brand,
+.nav-link {
+    color: #fff;
+}
+
+.section-title {
+    color: #007bff;
+    font-family: 'Pacifico', cursive;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.section-title h2 {
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #d3d3d3;
+}
+
+
+
+/* CSS for Dark Mode */
+.dark-mode {
+    background-color: #343a40;
+    color: #e0e0e0;
+}
+
+.dark-mode .contact-form {
+    background-color: #454545;
+    color: #e0e0e0;
+}
+
+.dark-mode .contact-form button {
+    background-color: royalblue;
+}
+
+.dark-mode .contact-form button:hover {
+    background-color: green;
+    color: whitesmoke;
+}
+
+.dark-mode .contact-info .icon {
+    color: #5ee1f5;
+}
+
+.dark-mode .footer {
+    background-color: #222;
+    border-top: 4px solid #444;
+}
+
+.dark-mode .hero {
+    background-color: #2234ae;
+    background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%);
+}
+
+.dark-mode .info {
+    background-color: #5a5a5a;
+    color: #e0e0e0;
+}
+
+.dark-mode .info:hover {
+    background-color: #6d6d6d;
+}
+
+.dark-mode .navbar {
+    background-color: #222;
+}
+
+.dark-mode .project-item {
+    background-color: #3C3C3C;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+}
+
+.dark-mode .project-item:hover {
+    background-color: #5a5a5a;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .section-title h2 {
+    border-color: rgb(72, 210, 72);
+    color: #5ee1f5;
+}
+
+```
