@@ -167,8 +167,8 @@ body {
 }
 
 .dark-mode .contact-form {
-    background-color: #454545;
-    color: #e0e0e0;
+    background-color: #155964;
+    color: white !important;
 }
 
 .dark-mode .contact-form button {
