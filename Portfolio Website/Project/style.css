@@ -1,3 +1,38 @@
+.carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: blue; /* Adjust color if needed */
+        border-radius: 50%;
+        background-size: 50%; /* Adjust icon size */
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 5%; /* Adjust size as needed */
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 4%; /* Adjust for larger screens */
+        }
+    }
+
+    @media (min-width: 992px) {
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 3%; /* Further adjust for very large screens */
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 2.5%; /* Fine-tune for extra-large screens */
+        }
+    }
 body {
     background-color: #F4F2EE;
     font-family: 'Arial', sans-serif;
@@ -97,6 +132,21 @@ body {
     width: 320px;
 }
 
+.img-container2 {
+    border: 1.5px solid green;
+    border-radius: 8px;
+    /* Slightly rounded corners */
+    height: 200px;
+    /* Adjusted height */
+    margin-bottom: 15px;
+    /* Space below the image */
+    overflow: hidden;
+    width: 100%;
+    /* Full width of the card */
+    object-fit: cover;
+    /* Ensures the image covers the area without distortion */
+}
+
 .info {
     background-color: #ffffff;
     border-radius: 10px;
@@ -147,6 +197,17 @@ body {
     padding: 10px 20px;
 }
 
+.section-title1 {
+    color: #007bff;
+    font-family: 'Pacifico', cursive;
+    margin: 40px 0;
+    text-align: center;
+    border-bottom: 1px solid #007bff;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+
 .social-icons a {
     color: white;
     font-size: 1.5rem;
@@ -154,8 +215,19 @@ body {
     transition: color 0.3s;
 }
 
+.social-icons-about {
+    color: blue;
+    font-size: 1.5rem;
+    margin: 20 20 20 20 px;
+    transition: color 0.3s;
+}
+
 .social-icons a:hover {
     color: #d3d3d3;
+}
+
+.social-icons-about a:hover {
+    color: green;
 }
 
 
@@ -219,6 +291,11 @@ body {
 }
 
 .dark-mode .section-title h2 {
+    border-color: rgb(72, 210, 72);
+    color: #5ee1f5;
+}
+
+.dark-mode .section-title1 {
     border-color: rgb(72, 210, 72);
     color: #5ee1f5;
 }
