@@ -126,6 +126,7 @@ body {
     overflow: hidden;
     width: 300px;
 }
+
 .info {
     background-color: #ffffff;
     border-radius: 10px;
@@ -176,6 +177,15 @@ body {
 .navbar-brand,
 .nav-link {
     color: #fff;
+}
+
+.navbar-nav .nav-link.active {
+    color: rgb(3, 253, 91);
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: underline;
 }
 
 .section-title {
