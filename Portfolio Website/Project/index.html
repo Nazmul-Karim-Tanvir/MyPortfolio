@@ -52,17 +52,45 @@
     <header id="home" class="hero">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 text-center text-lg-start">
+
+                <!-- Left Content -->
+                <div class="col-lg-6 text-center text-lg-start hero-content fade-left">
                     <h1><b>Welcome to My Portfolio</b></h1>
-                    <p class="lead">A passionate Software Engineer with a focus on Full Stack Web Development and Mobile
-                        Applications.</p>
-                    <a href="#contact" class="btn btn-light mb-5"><b>Contact</b></a>
-                </div>
-                <div class="col-lg-6 text-center text-lg-end">
-                    <div class="img-container">
-                        <img class="img-fluid rounded" src="./Images/tanvir.jpg" alt="Profile Picture">
+                    <p class="lead">
+                        A passionate Software Engineer with a focus on Full Stack Web Development and Mobile
+                        Applications.
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="mt-4">
+                        <a href="#contact" class="btn btn-light me-3 py-3 px-3"><b>Let’s Collaborate</b></a>
+                        <a href="#about" class="btn btn-outline-primary py-3 px-3"><b>Learn More</b></a>
+                    </div>
+
+                    <!-- Counters -->
+                    <div class="d-flex justify-content-center justify-content-lg-start mt-5 counters">
+                        <div class="me-4 text-center">
+                            <h2 class="counter" data-target="5">0</h2>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="me-4 text-center">
+                            <h2 class="counter" data-target="50">0</h2>
+                            <p>Projects Done</p>
+                        </div>
+                        <div class="text-center">
+                            <h2 class="counter" data-target="20">0</h2>
+                            <p>Happy Clients</p>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Right Image -->
+                <div class="col-lg-6 text-center text-lg-end fade-right">
+                    <div class="img-container">
+                        <img class="img-fluid rounded" src="./Images/tanvir6.png" alt="Profile Picture">
+                    </div>
+                </div>
+
             </div>
         </div>
     </header>
@@ -278,7 +306,7 @@
                         <div>
                             <h4>Rent a Car App</h4>
                             <p>Using Golang Docker</p>
-                             <a class='btn btn-success shadow' href="#projects">Visit Now</a>
+                            <a class='btn btn-success shadow' href="#projects">Visit Now</a>
                         </div>
                     </div>
                 </div>
@@ -497,7 +525,7 @@
             const navbarCollapse = document.querySelector('.navbar-collapse');
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = document.getElementById('theme-icon');
-    
+
             // Toggle icon change on navbar toggler click
             navbarToggler.addEventListener('click', function () {
                 if (navbarToggler.classList.contains('collapsed')) {
@@ -508,26 +536,26 @@
                     togglerIcon.classList.add('fas', 'fa-times');
                 }
             });
-    
+
             // Handle nav-link clicks
             navLinks.forEach(function (navLink) {
                 navLink.addEventListener('click', function (event) {
                     // Prevent default link behavior
                     event.preventDefault();
-    
+
                     // Remove 'active' class from all nav-links
                     navLinks.forEach(function (link) {
                         link.classList.remove('active');
                     });
-    
+
                     // Add 'active' class to the clicked nav-link
                     navLink.classList.add('active');
-    
+
                     // Close the collapsed navbar after click (for mobile view)
                     if (navbarCollapse.classList.contains('show')) {
                         navbarToggler.click();
                     }
-    
+
                     // Scroll to the clicked section
                     const targetId = navLink.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
@@ -538,11 +566,11 @@
                     }
                 });
             });
-    
+
             // Theme toggle functionality
             themeToggle.addEventListener('click', function () {
                 document.body.classList.toggle('dark-mode');
-    
+
                 // Change theme icon
                 if (document.body.classList.contains('dark-mode')) {
                     themeIcon.classList.remove('fa-moon');
@@ -553,9 +581,85 @@
                 }
             });
         });
-    </script>    
+
+        // Hero Scripts
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 100; // lower = faster
+
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+
+                    const updateCount = () => {
+                        const increment = Math.ceil(target / speed);
+                        if (count < target) {
+                            count += increment;
+                            counter.innerText = count + "+";
+                            setTimeout(updateCount, 40);
+                        } else {
+                            counter.innerText = target + "+";
+                        }
+                    };
+                    updateCount();
+                });
+            };
+
+            // Run animation when hero is visible
+            const heroSection = document.querySelector('.hero');
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    animateCounters();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.5 });
+
+            observer.observe(heroSection);
+        });
 
 
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            const heroSection = document.querySelector('.hero');
+            const leftContent = document.querySelector('.fade-left');
+            const rightContent = document.querySelector('.fade-right');
+
+            const speed = 200; // counter speed
+
+            // Counter animation
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+
+                    const updateCount = () => {
+                        const increment = Math.ceil(target / speed);
+                        if (count < target) {
+                            count += increment;
+                            counter.innerText = count + "+";
+                            setTimeout(updateCount, 40);
+                        } else {
+                            counter.innerText = target + "+";
+                        }
+                    };
+                    updateCount();
+                });
+            };
+
+            // Observer to trigger animation when hero is visible
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    leftContent.classList.add("fade-in");
+                    rightContent.classList.add("fade-in");
+                    animateCounters();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.3 });
+
+            observer.observe(heroSection);
+        });
+    </script>
 </body>
 
 </html>
