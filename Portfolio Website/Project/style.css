@@ -2,6 +2,36 @@ body {
     background-color: #F4F2EE;
     font-family: 'Arial', sans-serif;
     transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+    /* prevent horizontal scroll */
+}
+
+.counters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /* spacing between boxes */
+    flex-wrap: nowrap;
+    /* 🚫 prevent line break */
+    overflow-x: auto;
+    /* if too small screen, allow horizontal scroll */
+}
+
+.counter-box {
+    flex: 1 1 0;
+    /* equal space for all */
+    min-width: 90px;
+    /* minimum width to keep text readable */
+}
+
+.counter-box h2 {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
+.counter-box p {
+    font-size: 0.9rem;
 }
 
 .contact-form {
@@ -62,27 +92,24 @@ body {
     text-align: center;
 }
 
+/* ===========================
+   HERO SECTION
+=========================== */
 .hero {
     min-height: 100vh;
     background: linear-gradient(180deg,
             #cce5ff 0%,
-            /* soft blue top */
             #e6ccff 30%,
-            /* light lavender/purple */
             #ffe6cc 60%,
-            /* soft peach/yellow */
-            #ffffff 100%
-            /* fade to white */
-        );
+            #ffffff 100%);
     color: #000;
     display: flex;
-    justify-content: center;
     align-items: center;
     text-align: center;
-    flex-direction: column;
-    /* content vertically stacked */
-    padding: 40px 20px;
-    /* breathing space */
+    padding: 80px 15px;
+    /* safe padding */
+    overflow-x: hidden;
+    /* 🚫 stop horizontal scroll */
 }
 
 /* hero text styling */
@@ -100,45 +127,20 @@ body {
     color: #444;
 }
 
-/* hero image container */
-.hero .img-container {
-    border: 4px solid rgba(180, 210, 255, 0.8);
-    /* subtle soft-blue border */
-    border-radius: 50%;
-    width: 350px;
-    height: 350px;
-    margin: 0 auto 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.hero .img-container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-}
-
-.hero .img-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
+/* old image containers */
 .img-container {
     border: 3px solid rgb(180, 210, 255);
-    border-radius: 2%;
+    border-radius: 50%;
     display: inline-block;
-    height: 400px;
+    height: 350px;
     margin: 0 auto;
     overflow: hidden;
-    width: 400px;
+    width: 350px;
 }
 
-.img-container img {
-    border-radius: 50%;
-    display: block;
-    height: auto;
-    width: 100%;
+.img-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 }
 
 .img-container1 {
@@ -158,16 +160,11 @@ body {
     border-bottom: 5px solid green;
     border-left: 5px solid yellowgreen;
     border-radius: 8px;
-    /* Slightly rounded corners */
     width: 100%;
-    /* Adjusted height */
     margin-bottom: 10px;
-    /* Space below the image */
     overflow: hidden;
     height: 200px;
-    /* Full width of the card */
     object-fit: cover;
-    /* Ensures the image covers the area without distortion */
     padding: 5px 10;
 }
 
@@ -263,7 +260,6 @@ body {
     display: inline-block;
 }
 
-
 .social-icons a {
     color: white;
     font-size: 1.5rem;
@@ -297,8 +293,9 @@ body {
         2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-
-/* CSS for Dark Mode */
+/* ===========================
+   DARK MODE
+=========================== */
 .dark-mode {
     background-color: #343a40;
     color: #e0e0e0;
@@ -334,11 +331,8 @@ body {
     transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
     text-shadow:
         2px 2px 5px rgba(0, 0, 0, 0.4),
-        /* Dark shadow for depth */
         -2px -2px 4px rgba(255, 255, 255, 0.2),
-        /* Subtle light shadow */
         3px 3px 8px rgba(0, 0, 0, 0.3);
-    /* Soft highlight shadow */
 }
 
 .dark-mode .footer {
@@ -350,15 +344,12 @@ body {
     background-color: #2234ae;
     background-image: linear-gradient(315deg, #2234ae 0%, #141619 74%);
     color: white;
-    /* fallback text color */
 }
 
 .dark-mode .hero h1,
 .dark-mode .hero p {
     color: white;
-    /* force white text */
 }
-
 
 .dark-mode .info {
     background-color: #2c2c2c;
@@ -402,9 +393,9 @@ body {
     color: #5ee1f5;
 }
 
-/* animation */
-/* Base state */
-/* Base hidden state */
+/* ===========================
+   ANIMATIONS
+=========================== */
 .fade-left,
 .fade-right {
     opacity: 0;
@@ -414,17 +405,62 @@ body {
 
 .fade-left {
     transform: translateX(-100px);
-    /* বাইরে থেকে বামে */
 }
 
 .fade-right {
     transform: translateX(100px);
-    /* বাইরে থেকে ডানে */
 }
 
-/* When in view */
 .fade-in {
     opacity: 1;
     transform: translateX(0);
-    /* স্বাভাবিক অবস্থায় ফিরে আসবে */
+}
+
+/* ===========================
+   RESPONSIVE FIXES
+=========================== */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 80px;
+    }
+
+    /* Bigger hero title */
+    .hero h1 {
+        font-size: 2.5rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    /* Keep counters in same row */
+    .hero .counters {
+        flex-direction: row;
+        /* ✅ force row */
+        flex-wrap: nowrap;
+        /* ✅ prevent breaking */
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .hero .counters>div {
+        margin-bottom: 0;
+        /* ✅ remove bottom margin */
+    }
+
+    /* Smaller counter description text */
+    .hero .counters p {
+        font-size: 0.75rem;
+    }
+
+    /* Smaller counter numbers slightly */
+    .hero .counters h2 {
+        font-size: 1.3rem;
+    }
+
+    .img-container,
+    .hero .img-container {
+        max-width: 250px;
+        height: auto;
+    }
 }
