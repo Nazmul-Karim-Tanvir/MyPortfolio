@@ -22,11 +22,12 @@
 
     <!-- Grid backdrop -->
     <div class="grid-backdrop" aria-hidden="true"></div>
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 
     <!-- Navbar -->
     <header class="topbar">
         <div class="topbar-inner">
-            <a class="brand" href="#home"><span class="brand-caret">&gt;</span> NK<span class="brand-dim">.</span>Tanvir<span class="cursor">_</span></a>
+            <a class="brand" href="#home"><span class="brand-caret">&gt;</span> Nazmul Karim Tanvir<span class="cursor">_</span></a>
 
             <nav class="navlinks" id="navlinks">
                 <a href="#home" class="nav-link active" data-index="00">Home</a>
@@ -51,7 +52,8 @@
 
     <!-- Home / Hero -->
     <section id="home" class="hero">
-        <div class="container hero-grid">
+        <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+        <div class="container hero-shell">
             <div class="hero-text reveal">
                 <p class="eyebrow-line"><span class="dot"></span> status: open to collaborate</p>
                 <h1 class="hero-title">
@@ -100,6 +102,18 @@
         </div>
         <a href="#about" class="scroll-cue" aria-label="Scroll down"><span></span></a>
     </section>
+
+    <!-- Ticker -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span>React</span><span>Node.js</span><span>MongoDB</span><span>Docker</span>
+            <span>Kubernetes</span><span>AWS</span><span>Jenkins</span><span>Golang</span>
+            <span>React Native</span><span>Kotlin</span><span>Zustand</span><span>Tailwind CSS</span>
+            <span>React</span><span>Node.js</span><span>MongoDB</span><span>Docker</span>
+            <span>Kubernetes</span><span>AWS</span><span>Jenkins</span><span>Golang</span>
+            <span>React Native</span><span>Kotlin</span><span>Zustand</span><span>Tailwind CSS</span>
+        </div>
+    </div>
 
     <!-- About -->
     <section id="about" class="section">
@@ -456,10 +470,13 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-inner">
-            <span class="brand small">&gt; NK.Tanvir_</span>
-            <p>&copy; 2024 Nazmul Karim Tanvir. All rights reserved.</p>
+            <span class="brand small">&gt; Nazmul Karim Tanvir_</span>
+            <p>&copy; <span id="copyright-year">2024</span> Nazmul Karim Tanvir. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -562,6 +579,95 @@
         window.addEventListener('scroll', () => {
             topbar.classList.toggle('scrolled', window.scrollY > 12);
         }, { passive: true });
+
+        /* ---------- Dynamic copyright year ---------- */
+        const yearEl = document.getElementById('copyright-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+
+        /* ---------- Cursor-follow spotlight ---------- */
+        const glow = document.getElementById('cursor-glow');
+        const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (glow && finePointer && !reduceMotion) {
+            let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+            let gx = mx, gy = my;
+            window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+            (function glowLoop() {
+                gx += (mx - gx) * 0.12;
+                gy += (my - gy) * 0.12;
+                glow.style.transform = `translate3d(${gx}px, ${gy}px, 0) translate(-50%, -50%)`;
+                requestAnimationFrame(glowLoop);
+            })();
+        } else if (glow) {
+            glow.style.display = 'none';
+        }
+
+        /* ---------- Three.js hero particle field ---------- */
+        const canvas = document.getElementById('hero-canvas');
+        if (canvas && window.THREE && !reduceMotion) {
+            const heroEl = document.querySelector('.hero');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(55, heroEl.clientWidth / heroEl.clientHeight, 1, 1200);
+            camera.position.z = 420;
+
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(heroEl.clientWidth, heroEl.clientHeight);
+
+            function accentColor() {
+                const val = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+                return new THREE.Color(val || '#5647EA');
+            }
+
+            const COUNT = 650;
+            const positions = new Float32Array(COUNT * 3);
+            for (let i = 0; i < COUNT; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * 900;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 600;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 500;
+            }
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const material = new THREE.PointsMaterial({
+                color: accentColor(),
+                size: 2.6,
+                transparent: true,
+                opacity: 0.55,
+                sizeAttenuation: true
+            });
+
+            const points = new THREE.Points(geometry, material);
+            scene.add(points);
+
+            let targetX = 0, targetY = 0;
+            heroEl.addEventListener('mousemove', (e) => {
+                const rect = heroEl.getBoundingClientRect();
+                targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 0.6;
+                targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 0.6;
+            });
+
+            themeToggle.addEventListener('click', () => {
+                setTimeout(() => material.color.set(accentColor()), 50);
+            });
+
+            window.addEventListener('resize', () => {
+                camera.aspect = heroEl.clientWidth / heroEl.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(heroEl.clientWidth, heroEl.clientHeight);
+            });
+
+            (function animate() {
+                requestAnimationFrame(animate);
+                points.rotation.y += 0.0009;
+                points.rotation.x += (targetY - points.rotation.x) * 0.03;
+                points.rotation.y += (targetX - points.rotation.y) * 0.0006;
+                renderer.render(scene, camera);
+            })();
+        }
     });
     </script>
 </body>
