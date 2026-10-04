@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <link rel="icon" type="image/x-icon" href="./Images/myImageHomeCrop.jpg">
+    <title>Courses — Nazmul Karim Tanvir</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Courses page only */
+        .page-head { padding-top: calc(var(--nav-h) + 64px); padding-bottom: 40px; }
+        .page-head h1 { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.15; margin-bottom: 14px; }
+        .page-head p { max-width: 56ch; font-size: 1.05rem; }
+
+        .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 36px; }
+        .filter-btn {
+            font-family: var(--font-mono); font-size: 0.8rem; padding: 8px 16px;
+            border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+            color: var(--text); cursor: pointer;
+            transition: border-color var(--transition), color var(--transition), background-color var(--transition);
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-strong); }
+
+        .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .course-card {
+            background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+            overflow: hidden; display: flex; flex-direction: column;
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+        }
+        .course-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--accent); }
+        .course-card.hide { display: none; }
+
+        .course-banner {
+            height: 150px; display: grid; place-items: center; position: relative;
+            background: var(--accent-gradient); color: #fff; font-size: 2.8rem;
+        }
+        .course-banner.b2 { background: linear-gradient(100deg, #0EA5A4, #5647EA); }
+        .course-banner.b3 { background: linear-gradient(100deg, #FF6B4A, #E0457B); }
+        .course-banner .level {
+            position: absolute; top: 12px; left: 12px; font-family: var(--font-mono);
+            font-size: 0.7rem; padding: 4px 10px; border-radius: 999px;
+            background: rgba(0, 0, 0, 0.28); color: #fff;
+        }
+
+        .course-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .course-body h4 { font-size: 1.08rem; margin-bottom: 8px; }
+        .course-body p { font-size: 0.9rem; }
+        .course-meta {
+            display: flex; flex-wrap: wrap; gap: 14px; font-family: var(--font-mono);
+            font-size: 0.75rem; color: var(--text-muted); margin: 4px 0 16px;
+        }
+        .course-meta i { color: var(--accent); margin-right: 4px; }
+        .course-foot {
+            margin-top: auto; display: flex; align-items: center; justify-content: space-between;
+            border-top: 1px solid var(--line); padding-top: 14px;
+        }
+        .price { font-family: var(--font-mono); font-weight: 600; color: var(--text); }
+        .price small { color: var(--text-muted); font-weight: 400; text-decoration: line-through; margin-left: 6px; }
+        .rating { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-2); }
+
+        .cta-band { text-align: center; }
+        .cta-band .section-title { margin-bottom: 14px; }
+        .cta-band p { max-width: 50ch; margin: 0 auto 24px; }
+
+        @media (max-width: 1024px) { .course-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 760px) { .course-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body>
+    <div class="grid-backdrop" aria-hidden="true"></div>
+
+    <!-- Navbar (links go back to index.html sections) -->
+    <header class="topbar scrolled">
+        <div class="topbar-inner">
+            <a class="brand" href="index.html"><span class="brand-caret">&gt;</span> Nazmul Karim Tanvir<span class="cursor">_</span></a>
+
+            <nav class="navlinks" id="navlinks">
+                <a href="index.html#home" class="nav-link" data-index="00">Home</a>
+                <a href="index.html#about" class="nav-link" data-index="01">About</a>
+                <a href="index.html#services" class="nav-link" data-index="02">Services</a>
+                <a href="index.html#projects" class="nav-link" data-index="03">Projects</a>
+                <a href="index.html#skills" class="nav-link" data-index="04">Skills</a>
+                <a href="index.html#certifications" class="nav-link" data-index="05">Certs</a>
+                <a href="index.html#contact" class="nav-link" data-index="06">Contact</a>
+            </nav>
+
+            <div class="topbar-actions">
+                <a href="courses.html" class="btn btn-primary nav-courses-btn" aria-current="page">Courses</a>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <button id="nav-toggle" class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page header -->
+    <section class="page-head">
+        <div class="container">
+            <p class="section-index">Courses</p>
+            <h1>Learn to build <span class="accent-underline">real software</span>.</h1>
+            <p>Practical, project-based courses on web, mobile and DevOps — taught from what I use at work every day.</p>
+
+            <div class="filters" id="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="devops">DevOps</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course list -->
+    <section class="section alt" style="padding-top: 56px;">
+        <div class="container">
+            <div class="course-grid">
+
+                <article class="course-card reveal" data-cat="web">
+                    <div class="course-banner"><span class="level">Beginner</span><i class="fab fa-react"></i></div>
+                    <div class="course-body">
+                        <h4>React from Zero to Production</h4>
+                        <p>Components, hooks, routing and state with Zustand. Ship a complete app with Vite and Tailwind CSS.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i>12 hrs</span>
+                            <span><i class="fas fa-play-circle"></i>48 lessons</span>
+                        </div>
+                        <div class="course-foot">
+                            <span class="price">৳1,499<small>৳2,999</small></span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="index.html#contact" class="btn btn-primary btn-block" style="margin-top:14px;">Enroll</a>
+                    </div>
+                </article>
+
+                <article class="course-card reveal" data-cat="web">
+                    <div class="course-banner b2"><span class="level">Intermediate</span><i class="fab fa-node-js"></i></div>
+                    <div class="course-body">
+                        <h4>Node.js &amp; Express REST APIs</h4>
+                        <p>Build secure APIs with authentication, validation, MongoDB and clean project structure.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i>10 hrs</span>
+                            <span><i class="fas fa-play-circle"></i>40 lessons</span>
+                        </div>
+                        <div class="course-foot">
+                            <span class="price">৳1,799<small>৳3,499</small></span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <a href="index.html#contact" class="btn btn-primary btn-block" style="margin-top:14px;">Enroll</a>
+                    </div>
+                </article>
+
+                <article class="course-card reveal" data-cat="mobile">
+                    <div class="course-banner b3"><span class="level">Intermediate</span><i class="fas fa-mobile-alt"></i></div>
+                    <div class="course-body">
+                        <h4>React Native: Build Your First App</h4>
+                        <p>Create a cross-platform food delivery app with navigation, Firebase and push notifications.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i>14 hrs</span>
+                            <span><i class="fas fa-play-circle"></i>52 lessons</span>
+                        </div>
+                        <div class="course-foot">
+                            <span class="price">৳2,499<small>৳4,500</small></span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <a href="index.html#contact" class="btn btn-primary btn-block" style="margin-top:14px;">Enroll</a>
+                    </div>
+                </article>
+
+                <article class="course-card reveal" data-cat="devops">
+                    <div class="course-banner b2"><span class="level">Beginner</span><i class="fab fa-docker"></i></div>
+                    <div class="course-body">
+                        <h4>Docker &amp; Kubernetes Essentials</h4>
+                        <p>Containerize apps, write compose files and deploy your first cluster step by step.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i>9 hrs</span>
+                            <span><i class="fas fa-play-circle"></i>36 lessons</span>
+                        </div>
+                        <div class="course-foot">
+                            <span class="price">৳1,999<small>৳3,500</small></span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                        <a href="index.html#contact" class="btn btn-primary btn-block" style="margin-top:14px;">Enroll</a>
+                    </div>
+                </article>
+
+                <article class="course-card reveal" data-cat="devops">
+                    <div class="course-banner"><span class="level">Advanced</span><i class="fas fa-code-branch"></i></div>
+                    <div class="course-body">
+                        <h4>CI/CD with Jenkins &amp; SonarQube</h4>
+                        <p>Automate build, test and deploy pipelines with quality gates and Docker-based releases.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i>8 hrs</span>
+                            <span><i class="fas fa-play-circle"></i>30 lessons</span>
+                        </div>
+                        <div class="course-foot">
+                            <span class="price">৳2,999<small>৳5,000</small></span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <a href="index.html#contact" class="btn btn-primary btn-block" style="margin-top:14px;">Enroll</a>
+                    </div>
+                </article>
+
+                <article class="course-card reveal" data-cat="web">
+                    <div class="course-banner b3"><span class="level">Advanced</span><i class="fas fa-terminal"></i></div>
+                    <div class="course-body">
+                        <h4>Golang Backend Fundamentals</h4>
+                        <p>Concurrency, REST services and PostgreSQL — build a production-ready rental service.</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i>11 hrs</span>
+                            <span><i class="fas fa-play-circle"></i>44 lessons</span>
+                        </div>
+                        <div class="course-foot">
+                            <span class="price">৳2,799<small>৳4,800</small></span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <a href="index.html#contact" class="btn btn-primary btn-block" style="margin-top:14px;">Enroll</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-band">
+        <div class="container">
+            <p class="section-index">Need something custom?</p>
+            <h2 class="section-title">Request a private workshop</h2>
+            <p>Teaching a team? I can tailor a course around your stack and schedule.</p>
+            <a href="index.html#contact" class="btn btn-primary">Get in touch</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <span class="brand small">&gt; Nazmul Karim Tanvir_</span>
+            <p>&copy; <span id="copyright-year">2026</span> Nazmul Karim Tanvir. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        /* Theme (shares the same storage key as index.html) */
+        const root = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        function applyTheme(t) {
+            root.setAttribute('data-theme', t);
+            themeIcon.classList.toggle('fa-moon', t === 'light');
+            themeIcon.classList.toggle('fa-sun', t === 'dark');
+        }
+        applyTheme(localStorage.getItem('nkt-theme') || (prefersDark ? 'dark' : 'light'));
+        themeToggle.addEventListener('click', () => {
+            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+            localStorage.setItem('nkt-theme', next);
+        });
+
+        /* Mobile nav */
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('navlinks');
+        navToggle.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            navToggle.classList.toggle('open', open);
+            navToggle.setAttribute('aria-expanded', open);
+        });
+
+        /* Category filter */
+        const buttons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.course-card');
+        buttons.forEach(btn => btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            cards.forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
+        }));
+
+        /* Scroll reveal */
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('in-view'), (i % 6) * 70);
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    });
+    </script>
+</body>
+
+</html>
